@@ -11,7 +11,7 @@ if($app->esta_logueado())
 
 <html>
    <head>
-     <title>My app</title>
+     <title>Mi app</title>
      <link rel="stylesheet" href="libs/normalize-css/normalize.css">
      <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
      <link rel="stylesheet" href="recursos/css/estilo.css">
