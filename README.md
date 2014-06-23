@@ -31,14 +31,14 @@ Librerias incluidas
 Instalación
 -----------
 
-* Descarga [Gomosoft Auth](https://github.com/gomosoft/auth/archive/master.zip).
-* Crea una base de datos MySQL.
-* Modifica el archivo /controladores/config.inc con los datos de la base de datos, y el resto a tu preferencia.
-* Restaura el MySQL dump que esta dentro de la carpeta /auth.
-* Activa el módulo rewrite de Apache (mod_rewrite).
-* Copia la carpeta /auth al directorio accesible para tu server (www). 
-* Abre tu navegador y tipea la ruta que apunte a donde has copiado el app. Ej. localhost/auth
-* Ingresa con los siguientes datos:
+1. Descarga [Gomosoft Auth](https://github.com/gomosoft/auth/archive/master.zip).
+2. Crea una base de datos MySQL.
+3. Modifica el archivo /controladores/config.inc con los datos de la base de datos, y el resto a tu preferencia.
+4. Restaura el MySQL dump que esta dentro de la carpeta /auth.
+5. Activa el módulo rewrite de Apache (mod_rewrite).
+6. Copia la carpeta /auth al directorio accesible para tu server (www). 
+7. Abre tu navegador y tipea la ruta que apunte a donde has copiado el app. Ej. localhost/auth
+8. Ingresa con los siguientes datos:
  
   Usuaio: admin@admin.com
   Clave: admin
@@ -49,12 +49,12 @@ Instalación
 Instalación a través de GIT
 ---------------------------
 
-* $ git clone https://github.com/gomosoft/auth.git
-* cd auth/controladores
-* gedit config.inc
-* editamos las lineas de acuerdo a nuestro entorno de desarrollo.
-* Abre tu navegador y tipea la ruta que apunte a donde has copiado el app. Ej. localhost/auth
-* Inicia sesión con los siguientes datos:
+1. $ git clone https://github.com/gomosoft/auth.git
+2. cd auth/controladores
+3. gedit config.inc
+4. editamos las lineas de acuerdo a nuestro entorno de desarrollo.
+5. Abre tu navegador y tipea la ruta que apunte a donde has copiado el app. Ej. localhost/auth
+6. Inicia sesión con los siguientes datos:
  
   Usuaio: admin@admin.com
   Clave: admin
