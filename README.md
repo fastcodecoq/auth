@@ -1,4 +1,4 @@
-Gomosoft Auth
+Gomosoft Auth 
 =============
 
 Sistema de logueo prediseñado, basado en autenticación por tokens y http cookies (para persistir la sesion lado cliente, en caso de usar el sistema como REST API). En su estructura contiene PHP para backend y MySQL para base de datos. 
@@ -95,6 +95,11 @@ Librerias incluidas
 * Typehead.js
 
 
+Descargas
+---------
+
+* [Gomosoft Auth más reciente](http://gomosoft.com/d/latest.zip)
+* [Gomosoft Auth v1.0b (estable)](http://gomosoft.com/d/v1.0.b.zip)
 
 
 Creditos
