@@ -15,6 +15,19 @@ clave: admin
 [DEMO](http://gomosoft.com/auth)
 
 
+Librerias incluidas
+-------------------
+
+* AngularJS (1.2.18)
+* jQuery (2.1.1)
+* Bootstrap (3.1.1)
+* Animate.css
+* Lesscss
+* Normalize.css
+* Typehead.js
+
+
+
 Instalación
 -----------
 
@@ -109,16 +122,6 @@ $auth = new authCtrl;
  $auth->redir_to_app().
 ```
 
-Librerias incluidas
--------------------
-
-* AngularJS (1.2.18)
-* jQuery (2.1.1)
-* Bootstrap (3.1.1)
-* Animate.css
-* Lesscss
-* Normalize.css
-* Typehead.js
 
 
 Descargas
