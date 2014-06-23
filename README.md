@@ -77,10 +77,10 @@ require_once('ruta/a/auth.php');
 $auth = new authCtrl;
 
 // para redireccionar al login
- authCtrl->redir_to_login()
+ $auth->redir_to_login()
 
 // para redirecionar al app
- authCtrl->redir_to_app().
+ $auth->redir_to_app().
 ```
 
 Librerias incluidas
