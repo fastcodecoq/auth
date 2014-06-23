@@ -104,7 +104,7 @@ Como podemos observar cada modulo, tiene un objeto con dos variables r (lectura)
    ```  
 
 
-* Para eliminar un usuario se debe hacer una petición DELETE a /controladores/usuarios.php pasando como parametro el id del usuario. Ej. /controladores/usuarios.php?id=2
+* Para eliminar un usuario se debe hacer una petición `DELETE a /controladores/usuarios.php` pasando como parametro el id del usuario. Ej. /controladores/usuarios.php?id=2
 
 * Para actualizar un usuario se debe hacer una petición PUT a /controladores/usuarios.php pasando como parametros los campos que se actualizarán.
 
