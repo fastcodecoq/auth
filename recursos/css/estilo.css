@@ -1,0 +1,98 @@
+html { font-size: 100%; }
+
+  .clearfix:before,
+  .clearfix:after {content: " ";display: table;}
+  .clearfix:after {clear: both;}
+  .clearfix {*zoom: 1;}
+  .trg{text-align: right;}
+  .tlc{text-align: center;}
+  .tlf{text-align: left;}
+  .to-center{display:table; float: none; margin:0 auto;}
+  .force-to-center{display:table !important; float: none !important; margin:0 auto !important;}
+  .inline-block{display: inline-block;}
+  .block{display: block;}
+  .absolute{display: absolute;}
+  .relative{display: relative;}
+  .inherit{display: inherit;}
+  .padded{padding: 7px;}
+  .m-left{display: block;float: left;}
+  .m-right{display: block;float: right;}
+  .m-none{float: none;}
+  .bold{font-weight: bold;}
+  .no-bold{font-weight: normal;}
+  .f-italic{font-style: italic;}
+  .f-normal{font-style: none;}
+  .f-underlined{text-decoration: underline;}
+  .f-tached{text-decoration: line-through;}
+  .f-blinked{text-decoration: blink;}
+  .round-corners{border-radius:5px;}
+  .smooth-shadow{ box-shadow: 0 0 5px rgba(0,0,0, .20);}
+  .normal-shadow{ box-shadow: 0 0 5px rgba(0,0,0, .40);}
+  .hight-shadow{ box-shadow: 0 0 5px rgba(0,0,0, .80);}   
+  .no-shadow{box-shadow: none;}
+  .cirle{border-radius: -99em;}
+  .figure-small{width: 150px; height: 150px;}
+  .figure-medium{width: 220px; height: 220px;}
+  .figure-large{width: 350px; height: 350px;}
+  .figure-big{width: 600px; height: 600px;}
+
+  .w2{width: 25%;}
+  .w3{width: 33.3%;}
+  .w5{width: 50%;}
+  .w6{width: 66.7%;}
+  .w8{width: 79.3%;}
+  .wfull{width: 100%;}
+
+  .col{display:inline-block; padding-left: 1rem; padding-right: 1rem;}
+  .row{display: block;}
+  .container {margin: 0 auto;max-width: 48rem;width: 90%;}
+
+  .buscador{
+    border: 1px solid #ccc;
+padding: 5px 15px;
+  }
+
+  .buscador i{
+     color:#555;
+  }
+
+  .buscador input{
+    border: 0;
+box-shadow: none;
+margin: 0;
+padding: 0;
+font-size: 14px;
+
+  }
+
+  .buscador input:hover, .buscador input:active, .buscador input:focus{
+     box-shadow: none !important;
+     -webkit-appearance: none !important;
+     outline: none;
+  }
+
+  @media (max-width: 640px){
+      html{ font-size: 112%;}
+
+      /*mobiles*/
+  }
+
+
+  @media (min-width: 40rem){
+      html{ font-size: 112%;}
+
+      /*tablets*/
+  }
+
+
+  @media (min-width: 64rem){
+   
+    html { font-size: 120%; }    
+
+      /*escritorio*/
+  }
+
+  .input-big{
+    padding: 10px !important;
+font-size: 14px !important;
+  }
