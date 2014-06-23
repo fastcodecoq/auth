@@ -52,7 +52,7 @@ Los permisos deben ser suministrados como JSON raw (Un Objeto Javascript parsead
 ```javascript
   {
   "home":{"r":true,"w":true}, 
-  "usuarios" : {"r":true,"w":false}
+  "usuarios" : {"r":true}  //no tiene permiso escritura
   //... todos los modulos que necesites
   }
 
