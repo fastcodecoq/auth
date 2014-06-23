@@ -1,7 +1,7 @@
 <?php
 
          define("db_user","gomosoft"); //usuario de la base de datos
-         define("db_bd","auth"); //el nombre de la base de datos de su app
+         define("db_bd","auth"); //el nombre de la base de datos del app, por defecto es auth
          define("db_pass","****"); //la clave de la base de datos
          define("db_host","localhost");  
          define("so","linux");
