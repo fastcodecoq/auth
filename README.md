@@ -28,9 +28,7 @@ Instruciones
 
 * Para crear nuevos usuarios solo basta con hacer una petición POST a /controladores/usuarios.php. Ver estructura de la tabla usuarios para definir los campos requeridos.
 
-* Para eliminar un usuario se debe hacer una petición DELETE /controladores/usuarios.php pasando como parametro el id del usuario. Ej. /controladores/usuarios.php?id=2
-
-* Los permisos deben ser suministrados como JSON raw (Un Objeto Javascript parseado como cadena). Estructuta del JSON:
+Los permisos deben ser suministrados como JSON raw (Un Objeto Javascript parseado como cadena). Estructuta del JSON:
 
 
 ```javascript
@@ -61,9 +59,16 @@ Como podemos observar cada modulo, tiene dos parametros r (lectura) o w (escritu
      else
        // no tiene lectura y escritura
 
-   ```   
+   ```  
 
- *podemos redireccionar en cualquier momento usando lo métodos VOID authCtrl->redir_to_login() y authCtrl->redir_to_app().
+
+* Para eliminar un usuario se debe hacer una petición DELETE a /controladores/usuarios.php pasando como parametro el id del usuario. Ej. /controladores/usuarios.php?id=2
+
+* Para eliminar un usuario se debe hacer una petición PUT a /controladores/usuarios.php pasando como parametros los campos que se actualizarán. Ej. /controladores/usuarios.php
+
+* Para cambiar la clave se hace una petición GET a /controladores/usuarios.php?cambiar_clave, pasando como parametro usuario (email), clave antigua, clave y confirmación de clave [email, clave,_clave], ver el archivo /controladores/usuarios.php, para mayor comprensión.
+
+*podemos redireccionar en cualquier momento usando lo métodos VOID authCtrl->redir_to_login() y authCtrl->redir_to_app().
 
 
 Librerias incluidas
