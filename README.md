@@ -5,13 +5,15 @@ Sistema de logueo prediseñado, basado en autenticación por tokens y http cooki
 
 Esta herramienta te ahorrará horas de desarrollo, el cual podrás invertir en los modulos de tu app. Además incluye un conjuto de librerías, listas para que las uses de acuerdo a tus necesidades (librerias incluidas se detallan abajo).
 
-Mirar DEMO 
+DEMO 
+-----
 
 usuario: admin@admin.com 
 
 clave: admin
 
 [DEMO](http://gomosoft.com/auth)
+
 
 Instalación
 -----------
