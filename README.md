@@ -110,7 +110,7 @@ Como podemos observar cada modulo, tiene un objeto con dos variables r (lectura)
 
 * Para cambiar la clave se hace una petición GET a /controladores/usuarios.php?cambiar_clave, pasando como parametro usuario (email), clave antigua, clave y confirmación de clave [email, clave,_clave], ver el archivo /controladores/usuarios.php, para mayor comprensión.
 
-* podemos redireccionar en cualquier momento usando lo métodos VOID: 
+* Redireccionar en cualquier momento usando lo métodos disponibles: 
 ```php
 require_once('ruta/a/auth.php');
 $auth = new authCtrl;
@@ -121,8 +121,18 @@ $auth = new authCtrl;
 // para redirecionar al app
  $auth->redir_to_app().
 ```
+* Validar si el usuario esta logueado:
 
+```php
+include('ruta/a/auth.php');
 
+$auth = new authCtrl;
+
+ if(!$auth->esta_logueado())
+     //esta logueado
+ else
+    //no esta logueado
+```
 
 Descargas
 ---------
