@@ -57,7 +57,7 @@ Los permisos deben ser suministrados como JSON raw (Un Objeto Javascript parsead
   }
 
 ```
-Como podemos observar cada modulo, tiene dos parametros r (lectura) o w (escritura). 
+Como podemos observar cada modulo, tiene un objeto con dos variables r (lectura) o w (escritura). 
 
  *para validar permisos llamamos al método BOOL validar_permisos (authCtrl->validar_permisos()). Tomemos como referencia el modulo usuarios, para exlicar la validación de permisos:
   
