@@ -51,7 +51,7 @@ class authCtrl{
 				   $ttl = (!$es_infinito) ? time() + (3600 * 2) : -7200;  
 
 				   //actualizamos la cookie http
-                $c = setcookie(cookie_name, serialize(array($usr, $token)), $ttl,'/', dominio, false, true);				 
+                $c = setcookie(cookie_name, serialize(array($usr, $token)), $ttl,'/', dominio, cookie_https, true);				 
 
                 if(!$c)
                 	throw new authException("Error extendiendo la Cookie");
@@ -222,7 +222,7 @@ class authCtrl{
             {
 
                //eliminamos la cookie http
-               setcookie(cookie_name, '', time() - 1800 ,'/', dominio, false, true);				 
+               setcookie(cookie_name, '', time() - 1800 ,'/', dominio, cookie_https, true);				 
 
 
                $this->db->query("DELETE FROM credenciales WHERE usr = '{$usr}' AND token = '{$token}'") or die($this->db->error);
@@ -338,7 +338,7 @@ class authCtrl{
                  // sino le damos 2 horas de vida (media jornada laboral)
                   $ttl = $remember ? time() + ((3600 * 24)*30) : time() + ( 3600 * 2 ); 
 
-                  $c = setcookie(cookie_name, serialize(array($_email,$token)), $ttl ,'/', dominio, false, true);				 
+                  $c = setcookie(cookie_name, serialize(array($_email,$token)), $ttl ,'/', dominio, cookie_https, true);				 
 
                   if(!$c)                  	
                 	throw new authException("Error creando la Cookie");
