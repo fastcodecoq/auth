@@ -22,7 +22,23 @@ Instalación
   Usuaio: admin@admin.com
   Clave: admin
 
-* Listo comienza a desarrollar tu aplicación
+* Listo comienza a desarrollar tu aplicación.
+
+
+Instalación a través de GIT
+---------------------------
+
+* $ git clone https://github.com/gomosoft/auth.git
+* cd auth/controladores
+* gedit config.inc
+* editamos las lineas de acuerdo a nuestro entorno de desarrollo.
+* Abre tu navegador y tipea la ruta que apunte a donde has copiado el app. Ej. localhost/auth
+* Inicia sesión con los siguientes datos:
+ 
+  Usuaio: admin@admin.com
+  Clave: admin
+
+* Listo comienza a desarrollar tu aplicación.
 
 
 Instruciones
