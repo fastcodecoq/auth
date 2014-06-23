@@ -359,18 +359,27 @@ function main(){
 			break;
 
 		case 'POST':
+           
              if(isset($_GET['completar']))
              $app->ini_clave();
              else if(!isset($_GET['activar_pass']))
 		         $app->post();
+
 		break;
 
 		case 'DELETE':
-		   $app->delete();
-		break;
+		
+       $app->delete();
+		
+    break;
 
 		case 'PUT':
-		   $app->put();
+    
+    if(isset($_GET['cambiar_clave']))
+		   $app->cambiar_clave();
+    else
+       $app->put();
+
 		break;
 		
 

@@ -308,6 +308,7 @@ class authCtrl{
                  $token = $_SERVER['HTTP_USER_AGENT'] . $email . $now . $_SERVER["REMOTE_ADDR"];
                  $ip = $_SERVER["REMOTE_ADDR"];
      		     
+             //validamos si la ip es valida, evitando que nos hagan XSS 
      		     if(!filter_var($ip, FILTER_VALIDATE_IP))
      		     	return $this->redir_to_login();
 
@@ -317,7 +318,7 @@ class authCtrl{
                  $cliente = json_encode($ua);
                  $ua = md5($_SERVER['HTTP_USER_AGENT']);
 
-				 $token = $this->gen_token($token);               
+				         $token = $this->gen_token($token);               
 
                  $this->db->query("UPDATE usuarios SET ultimo_ingreso = {$now} WHERE _email = '{$_email}'");                 
 
@@ -351,18 +352,7 @@ class authCtrl{
               $this->redir($this->login_url . '?auth=false');  //no es un usuario valido                                
            }else
               $this->redir($this->login_url . '?auth=false');  //no es un usuario valido               
-             
-
-
-       // adjunto dejo las tablas y los metodos crear, el resto les corresponde a ustedes:
-       // hacer un controlador con los siguientes metodos: 
-       // 1. private token_expiro: debe verificar si un token no ha expirado
-       // 2. private refrescar_token: debe refrescar un token.       
-       // 3. public verificar_token: debe verificar que un token no corresponde a un usuario, ... 
-       // ... luego debe implementar el metodo token_expiro para validar que aun puede ser usado ...
-       // ... y por ultimo si el token aun estaba en tiempo de vida, debe refrescarlo, en caso de ...
-       // ... que no tenga tiempo de vida (ttl) infinito
-       
+            
 
      }
 
@@ -377,22 +367,28 @@ function _main(){
 	
 
 		case 'POST':
-		  if(isset($_GET['auth']))
+		  
+      if(isset($_GET['auth']))
 		        $app->auth();
 		  else if(isset($_GET['activar_pass']))
 		    	 {
 		    	 	header('Content-type: text/html; charset=utf-8');
 		    	 	echo $app->activar_pass();
 		    	 }
+
 		break;
 
 		case 'GET':
-		    if(isset($_GET['logout']))
+		   
+        if(isset($_GET['logout']))
 		    	$app->logout();		
 		    else if(isset($_GET['perms']))
 		        echo json_encode($app->get_permisos());  
 		    else if(isset($_GET['test_perms']))
-		        var_dump($app->validar_permisos('usr'));  
+           if(isset($_GET['privilegio']))
+		        var_dump($app->validar_permisos($_GET['modulo']), $_GET['privilegio']);  
+           else
+            $app->validar_permisos($_GET['modulo']);
 		    
 		break;
 
@@ -406,5 +402,5 @@ try{
 }catch(authException $e){
   echo $e->getMessage(); 
   die;
-	// manejo del error solo para modo desarrollo
+	// imprimimos el error solo para modo desarrollo
 }
