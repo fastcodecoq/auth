@@ -10,7 +10,7 @@ Esta herramienta te ahorrará horas de desarrollo, el cual podrás invertir en l
 Instalación
 -----------
 
-* Descarga el zip del repo pulsando el botón "Download zip" -->
+* Descarga [Gomosoft Auth](https://github.com/gomosoft/auth/archive/master.zip).
 * Crea una base de datos MySQL.
 * Modifica el archivo /controladores/config.inc con los datos de la base de datos, y el resto a tu preferencia.
 * Restaura el MySQL dump que esta dentro de la carpeta /auth.
@@ -98,7 +98,7 @@ Librerias incluidas
 Descargas
 ---------
 
-* [Gomosoft Auth más reciente](http://gomosoft.com/d/latest.zip)
+* [Gomosoft Auth más reciente](https://github.com/gomosoft/auth/archive/master.zip)
 * [Gomosoft Auth v1.0b (estable)](http://gomosoft.com/d/v1.0.b.zip)
 
 
