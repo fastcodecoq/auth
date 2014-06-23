@@ -1,7 +1,9 @@
 Gomosoft Auth
 =============
 
-Sistema de logueo en PHP + MySQL. Este es un sistema de logueo prediseñado, basado en autenticación de usuarios por tokens y http cookies (para persistir la sesion lado cliente, en caso de usar el sistema como REST API).
+Sistema de logueo prediseñado, basado en autenticación de usuarios por tokens y http cookies (para persistir la sesion lado cliente, en caso de usar el sistema como REST API). En su estructura contiene PHP para backend y MySQL para base de datos. 
+
+Esta herramienta te ahorrará horas de desarrollo, y lo puedas invertir en los modulos de tu app. 
 
 
 
@@ -91,3 +93,23 @@ Creditos
 @gomosoft [Gomosoft](http://gomosoft.com).
 
 Preguntas adicionales: jgomez@gomosoft.com
+
+Licencia GPLv3
+--------------
+
+
+
+This file is part of Gomosoft Auth.
+
+    Gomosoft Auth is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Gomosoft Auth is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Gomosoft Auth.  If not, see <http://www.gnu.org/licenses/>.
