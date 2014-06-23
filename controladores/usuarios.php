@@ -376,7 +376,26 @@ function main(){
 		case 'PUT':
     
     if(isset($_GET['cambiar_clave']))
-		   $app->cambiar_clave();
+		   {
+        parse_str(file_get_contents("php://input"), $_PUT);
+        
+        $erros = array();
+
+        if(!isset($_PUT['clave']) OR empty($_PUT['clave']))
+          $errors[] = 'clave_antigua_no_valida';
+
+        if(!isset($_PUT['nva_clave']) OR empty($_PUT['nva_clave']))
+          $errors[] = 'suminitrar_clave';
+
+        if(!isset($_PUT['_nva_clave']) OR empty($_PUT['_nva_clave']))
+          $errors[] = 'suminitrar_clave';
+
+        $clave = $_PUT['clave'];
+        $nva_clave = $_PUT['nva_clave'];
+        $_nva_clave = $_PUT['_nva_clave'];
+
+        $app->cambiar_clave();
+       }
     else
        $app->put();
 

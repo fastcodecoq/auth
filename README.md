@@ -108,7 +108,7 @@ Como podemos observar cada modulo, tiene un objeto con dos variables r (lectura)
 
 * Para actualizar un usuario se debe hacer una petición PUT a /controladores/usuarios.php pasando como parametros los campos que se actualizarán.
 
-* Para cambiar la clave se hace una petición PUT a /controladores/usuarios.php?cambiar_clave, pasando como parametro usuario (email), clave antigua, clave y confirmación de clave [email, clave,_clave], ver el archivo /controladores/usuarios.php, para mayor comprensión.
+* Para cambiar la clave se hace una petición PUT a /controladores/usuarios.php?cambiar_clave, pasando como parametro  clave antigua, nueva clave y confirmación de nueva clave [clave,nva_clave,_nva_clave], ver el archivo /controladores/usuarios.php, para mayor comprensión.
 
 * Redireccionar en cualquier momento usando lo métodos disponibles: 
 ```php
