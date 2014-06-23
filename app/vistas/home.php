@@ -36,7 +36,7 @@ $auth = new authCtrl;
        Token: 
        <br>
        <br>
-       <input type="text" value="<?php echo $_GET['token']; ?>" class="input-big wfull">
+       <input onClick="this.setSelectionRange(0, this.value.length)" type="text" value="<?php echo $_GET['token']; ?>" class="input-big wfull">
        <br>
        <br>
        El token nos sirve dado el caso de que necesitemos usar el server como un REST API. En ese caso debemos hacer todos los request pasando como parametros el token y el usuario.
