@@ -2,7 +2,7 @@
 
          define("db_user","gomosoft"); //usuario de la base de datos
          define("db_bd","auth"); //el nombre de la base de datos de su app
-         define("db_pass","p455wd"); //la clave de la base de datos
+         define("db_pass","****"); //la clave de la base de datos
          define("db_host","localhost");  
          define("so","linux");
          define("idioma","español");
