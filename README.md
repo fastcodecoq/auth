@@ -65,9 +65,9 @@ Instalación a través de GIT
 Instruciones
 ------------
 
-* Para crear nuevos usuarios solo basta con hacer una petición POST a /controladores/usuarios.php. Ver estructura de la tabla usuarios para definir los campos requeridos.
+* Para crear nuevos usuarios solo basta con hacer una petición `POST a /controladores/usuarios.php`. Ver estructura de la tabla usuarios para definir los campos requeridos.
 
-Los permisos deben ser suministrados como JSON raw (Un Objeto Javascript parseado como cadena). Estructuta del JSON:
+Los permisos deben ser suministrados como JSON RAW (Un Objeto Javascript parseado como cadena). Estructuta del JSON:
 
 
 ```javascript
@@ -81,7 +81,7 @@ Los permisos deben ser suministrados como JSON raw (Un Objeto Javascript parsead
 ```
 Como podemos observar cada modulo, tiene un objeto con dos variables r (lectura) o w (escritura). 
 
-* para validar permisos llamamos al método BOOL validar_permisos (authCtrl->validar_permisos()). Tomemos como referencia el modulo usuarios, para exlicar la validación de permisos:
+* para validar permisos llamamos al método BOOL validar_permisos. Tomemos como referencia el modulo usuarios, para exlicar la validación de permisos:
   
 
   ```php
@@ -108,7 +108,7 @@ Como podemos observar cada modulo, tiene un objeto con dos variables r (lectura)
 
 * Para actualizar un usuario se debe hacer una petición PUT a /controladores/usuarios.php pasando como parametros los campos que se actualizarán.
 
-* Para cambiar la clave se hace una petición PUT a /controladores/usuarios.php?cambiar_clave, pasando como parametro  clave antigua, nueva clave y confirmación de nueva clave [clave,nva_clave,_nva_clave], ver el archivo /controladores/usuarios.php, para mayor comprensión.
+* Para cambiar la clave se hace una petición `PUT a /controladores/usuarios.php?cambiar_clave`, pasando como parametro  clave antigua, nueva clave y confirmación de nueva clave `[clave,nva_clave,_nva_clave]`, ver el archivo /controladores/usuarios.php, para mayor comprensión.
 
 * Redireccionar en cualquier momento usando lo métodos disponibles: 
 ```php
