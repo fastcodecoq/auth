@@ -43,7 +43,7 @@ Instalación
   Usuaio: admin@admin.com
   Clave: admin
 
-9 Listo comienza a desarrollar tu aplicación.
+9. Listo comienza a desarrollar tu aplicación.
 
 
 Instalación a través de GIT
@@ -59,7 +59,7 @@ Instalación a través de GIT
   Usuaio: admin@admin.com
   Clave: admin
 
-7 Listo comienza a desarrollar tu aplicación.
+7. Listo comienza a desarrollar tu aplicación.
 
 
 Instruciones
