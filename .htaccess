@@ -4,3 +4,9 @@
 	Deny from all
 </Files>
 
+RewriteEngine On
+
+RewriteBase /auth   
+#cambiar por la ruta del app, en caso de que sea raíz colocar RewriteBase /
+
+RewriteRule ingresar  ./controladores/auth.php?auth

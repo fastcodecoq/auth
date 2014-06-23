@@ -9,6 +9,8 @@
          define("charset","utf-8");
          define("zona_horaria","America/Bogota");
          define("dominio",""); //si es diferente a localhost colocarlo aqui para mayor seguridad  
+                               // ej. define("dominio","midominio.com");
+         define("cookie_name","auth"); //nombre de la cookie
          define("path",""); // si el app funcionará en un directorio diferente aqui, colocalo.
          define("login_url","/localhost/auth");  //cambiar por la ruta a su archivo login         
          define("app_url","/localhost/auth/app");  //cambiar por la ruta a su archivo login         

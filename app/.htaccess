@@ -3,4 +3,5 @@ RewriteEngine On
 RewriteBase /auth   
 #cambiar por la ruta del app, en caso de que sea raíz colocar RewriteBase /
 
-RewriteRule salir  ./controladores/auth.php?logout
+RewriteRule ^salir$  ./controladores/auth.php?logout
+RewriteRule ^v/(.*)  ./index.php?v=$1

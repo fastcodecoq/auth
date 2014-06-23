@@ -124,8 +124,8 @@ class usrsCtrl{
      	  {
             $vals['nombre'] = $_POST['nombre'];
             $vals['email'] = $_POST['email'];
-     	  $vals['_email'] = "'" . md5($email) . "'";
-     	  $vals['permisos'] = $_POST['permisos'];
+     	      $vals['_email'] = "'" . md5($email) . "'";
+     	      $vals['permisos'] = $_POST['permisos'];
             }else{
             $vals['nombre'] = $_POST['nombre'];
             $vals['clave'] = "'" . $this->hash_($clave) . "'";
@@ -144,7 +144,7 @@ class usrsCtrl{
      	  $_usr = $this->db->query("SELECT id FROM usuarios WHERE email = {$_POST['email']}");
 
      	  if($_usr->num_rows > 0)
-     	  {
+     	  {        
      	  	echo json_encode(array('error' => true, 'message' => 'usuario_duplicado'));
      	  	die;
      	  }
@@ -362,7 +362,7 @@ function main(){
              if(isset($_GET['completar']))
              $app->ini_clave();
              else if(!isset($_GET['activar_pass']))
-		   $app->post();
+		         $app->post();
 		break;
 
 		case 'DELETE':

@@ -44,14 +44,14 @@ class authCtrl{
      			$now = time();
 
      			//generamos un nuevo token
-                $_token = $_SERVER['HTTP_USER_AGENT'] . $usr . $now . $_SERVER["REMOTE_ADDR"];
+           $_token = $_SERVER['HTTP_USER_AGENT'] . $usr . $now . $_SERVER["REMOTE_ADDR"];
 
-				$_token = $this->gen_token($_token); 
+				   $_token = $this->gen_token($_token); 
 
-				$ttl = (!$es_infinito) ? time() + (3600 * 2) : -7200;  
+				   $ttl = (!$es_infinito) ? time() + (3600 * 2) : -7200;  
 
-				//actualizamos la cookie http
-                $c = setcookie('blq', serialize(array($usr, $token)), $ttl,'/', dominio, false, true);				 
+				   //actualizamos la cookie http
+                $c = setcookie(cookie_name, serialize(array($usr, $token)), $ttl,'/', dominio, false, true);				 
 
                 if(!$c)
                 	throw new authException("Error extendiendo la Cookie");
@@ -190,11 +190,11 @@ class authCtrl{
 
     public function get_credencial(){
 
-    	if(!isset($_COOKIE['blq']) && !$this->REST_API)
+    	if(!isset($_COOKIE[cookie_name]) && !$this->REST_API)
     		return false;    	
 
       if(!$this->REST_API)
-    	return unserialize($_COOKIE['blq']);
+    	return unserialize($_COOKIE[cookie_name]);
       else
       return array(md5($_GET['user']), $_GET['token']);
 
@@ -222,7 +222,7 @@ class authCtrl{
             {
 
                //eliminamos la cookie http
-               setcookie('blq', '', time() - 1800 ,'/', dominio, false, true);				 
+               setcookie(cookie_name, '', time() - 1800 ,'/', dominio, false, true);				 
 
 
                $this->db->query("DELETE FROM credenciales WHERE usr = '{$usr}' AND token = '{$token}'") or die($this->db->error);
@@ -338,7 +338,7 @@ class authCtrl{
                  // sino le damos 2 horas de vida (media jornada laboral)
                   $ttl = $remember ? time() + ((3600 * 24)*30) : time() + ( 3600 * 2 ); 
 
-                  $c = setcookie('blq', serialize(array($_email,$token)), $ttl ,'/', dominio, false, true);				 
+                  $c = setcookie(cookie_name, serialize(array($_email,$token)), $ttl ,'/', dominio, false, true);				 
 
                   if(!$c)                  	
                 	throw new authException("Error creando la Cookie");
@@ -401,7 +401,7 @@ function _main(){
 }
 
 try{
-  
+
  _main();  // para usar como REST API instanciar así _main(true);
 
 }catch(authException $e){
