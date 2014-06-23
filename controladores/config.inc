@@ -10,6 +10,7 @@
          define("zona_horaria","America/Bogota");
          define("dominio",""); //si es diferente a localhost colocarlo aqui para mayor seguridad  
                                // ej. define("dominio","midominio.com");
+         define("REST_API","false"); //cambiar a true para usar como REST API
          define("cookie_name","auth"); //nombre de la cookie
          define("path",""); // si el app funcionará en un directorio diferente aqui, colocalo.
          define("login_url","/localhost/auth");  //cambiar por la ruta a su archivo login         

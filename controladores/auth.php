@@ -11,12 +11,12 @@ class authCtrl{
 	var $app_url;
   var $REST_API;
 
-     public function __construct($REST_API = false){     	  
+     public function __construct(){     	  
      	  $this->db = new mysqli(db_host, db_user, db_pass, db_bd);  // cambiar por tu base de datos
 
      	  $this->login_url = path . "/" . login_url; 
 		    $this->app_url = path . "/" . app_url; 
-        $this->REST_API = $REST_API;   	  
+        $this->REST_API = REST_API;   	  
 
      }
 
@@ -402,8 +402,7 @@ function _main(){
 
 try{
 
- _main();  // para usar como REST API instanciar así _main(true);
-
+ _main();  
 }catch(authException $e){
   echo $e->getMessage(); 
   die;
