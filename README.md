@@ -70,7 +70,7 @@ Como podemos observar cada modulo, tiene dos parametros r (lectura) o w (escritu
 
 * Para cambiar la clave se hace una petición GET a /controladores/usuarios.php?cambiar_clave, pasando como parametro usuario (email), clave antigua, clave y confirmación de clave [email, clave,_clave], ver el archivo /controladores/usuarios.php, para mayor comprensión.
 
-*podemos redireccionar en cualquier momento usando lo métodos VOID authCtrl->redir_to_login() y authCtrl->redir_to_app().
+* podemos redireccionar en cualquier momento usando lo métodos VOID authCtrl->redir_to_login() y authCtrl->redir_to_app().
 
 
 Librerias incluidas
