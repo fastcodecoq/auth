@@ -1,3 +1,14 @@
+SetEnvIfNoCase User-Agent "^Wget" bad_bot
+SetEnvIfNoCase User-Agent "^Wget/1.5.3" bad_bot
+SetEnvIfNoCase User-Agent "^Wget/1.6" bad_bot
+
+<Files ~ "\.(html|pdf|mp3|zip|rar|exe|gif|jpe?g|png|php|jsp) $">
+Order Allow,Deny
+Allow from all
+Deny from env=bad_bot
+</files>
+
+
 #bloquemos el acceso http a los archivos .inc
 <Files ~ "\.inc$">
 	Order allow,deny

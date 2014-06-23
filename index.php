@@ -53,7 +53,7 @@ if($app->esta_logueado())
                   <label style="width:auto">Recordarme <input type="checkbox" name="remember"></label>
                 </div>
                 <div class="pull-right">
-                  <a href="#" style="line-height: 2.5;" class="activar">Recuperar Clave</a>
+                  <a href="#"  class="activar">Recuperar Clave</a>
                 </div>
               </div>
                    <br>
