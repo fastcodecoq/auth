@@ -83,8 +83,7 @@ Como podemos observar cada modulo, tiene un objeto con dos variables r (lectura)
 
 * para validar permisos llamamos al método BOOL validar_permisos. Tomemos como referencia el modulo usuarios, para exlicar la validación de permisos:
   
-
-  ```php
+```php
      require_once('ruta/a/auth.php');
      $auth = new authCtrl;
 
@@ -101,7 +100,7 @@ Como podemos observar cada modulo, tiene un objeto con dos variables r (lectura)
      else
        // no tiene lectura y escritura
 
-   ```  
+```  
 
 
 * Para eliminar un usuario se debe hacer una petición `DELETE a /controladores/usuarios.php` pasando como parametro el id del usuario. Ej. /controladores/usuarios.php?id=2
