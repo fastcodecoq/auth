@@ -78,8 +78,14 @@ if($app->esta_logueado())
 
        <?php if(isset($_GET['auth'])) echo "auth=true;"; ?>
 
-       if(auth) 
+
+   $(function(){
+
+     if(auth) 
         $('.login-cont').addClass('shake');
+
+   });
+      
 
 
 
