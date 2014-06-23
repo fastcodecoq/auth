@@ -8,6 +8,7 @@ Esta herramienta te ahorrará horas de desarrollo, el cual podrás invertir en l
 Mirar DEMO 
 
 usuario: admin@admin.com 
+
 clave: admin
 
 [DEMO](http://gomosoft.com/auth)
