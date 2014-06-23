@@ -25,7 +25,7 @@ $auth = new authCtrl;
 ?>
 
 
- 	<div class="to-center w6 tlc to-center animated fadeInUp">
+ 	<div class="to-center w6 tlc ">
    		<p>
        Bienvenido, <strong><?php echo $_GET['usr']; ?></strong>&nbsp;&nbsp;<a href='salir'>Salir</a>
        <br>  	      	

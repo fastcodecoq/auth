@@ -9,7 +9,7 @@
    </head>
    <body>
 
-   	<div class='container w8'>
+   	<div class='container w8 to-center animated fadeInUp'>
               	<br>
               	<br>
               	<br>

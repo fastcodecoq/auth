@@ -1,3 +1,5 @@
+#bloqueamos descarga wget
+
 SetEnvIfNoCase User-Agent "^Wget" bad_bot
 SetEnvIfNoCase User-Agent "^Wget/1.5.3" bad_bot
 SetEnvIfNoCase User-Agent "^Wget/1.6" bad_bot
@@ -9,7 +11,7 @@ Deny from env=bad_bot
 </files>
 
 
-#bloquemos el acceso http a los archivos .inc
+#bloqueamos el acceso http a los archivos .inc
 <Files ~ "\.inc$">
 	Order allow,deny
 	Deny from all

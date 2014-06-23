@@ -7,6 +7,8 @@ $app = new authCtrl;
 if($app->esta_logueado())
   $app->redir_to_app();  // si esta logueado lo mandamos a la pagina del app
 
+
+
 ?>
 
 <html>
@@ -14,18 +16,19 @@ if($app->esta_logueado())
      <title>Mi app</title>
      <link rel="stylesheet" href="libs/normalize-css/normalize.css">
      <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
+     <link rel="stylesheet" href="libs/animate.css/animate.min.css">     
      <link rel="stylesheet" href="recursos/css/estilo.css">
    </head>
-   <body>
+   <body class="animated fadeInDown">
 
    	<div class='container w8'>
               	<br>
               	<br>
-              	<h3 class="tlc">Gomosoft AUTH</h3>
+              	<h3 class="tlc" style='color:#555'>Gomosoft AUTH</h3>
               	<br>
               	<br>
 
-   	<div class="to-center w5">
+   	<div class="to-center w5 login-cont animated">
    	    <form action="controladores/auth.php?auth" method="POST" name="login">
           <div class="to-center w8" >
           <table class='wfull'>
@@ -50,7 +53,7 @@ if($app->esta_logueado())
                 	<br>
                   <div class="block">
                   <div class="pull-left">
-                  <label style="width:auto">Recordarme <input type="checkbox" name="remember"></label>
+                  <label style="width:auto; font-weight:normal">Recordarme <input type="checkbox" name="remember"></label>
                 </div>
                 <div class="pull-right">
                   <a href="#"  class="activar">Recuperar Clave</a>
@@ -68,6 +71,18 @@ if($app->esta_logueado())
          </form>
      </div>
  </div>
+    <script type="text/javascript" src="libs/jquery/dist/jquery.js"></script>
+    <script type="text/javascript">
 
+      var auth = false;
+
+       <?php if(isset($_GET['auth'])) echo "auth=true;"; ?>
+
+       if(auth) 
+        $('.login-cont').addClass('shake');
+
+
+
+    </script>
    </body>
 </html>
