@@ -53,6 +53,7 @@ Los permisos deben ser suministrados como JSON raw (Un Objeto Javascript parsead
   {
   "home":{"r":true,"w":true}, 
   "usuarios" : {"r":true,"w":false}
+  //... todos los modules que necesites
   }
 
 ```
