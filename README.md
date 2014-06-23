@@ -140,13 +140,19 @@ Descargas
 * [Gomosoft Auth más reciente](https://github.com/gomosoft/auth/archive/master.zip)
 * [Gomosoft Auth v1.0b (estable)](http://gomosoft.com/d/v1.0.b.zip)
 
+Funcionalidades en camino
+-------------------------
+
+* Modulo usuarios (crear, modificar, eliminar, cambiar contraseña)
+* Modulo recuperar contraseña
+
 
 Creditos
 --------
 
 @gomosoft [Gomosoft](http://gomosoft.com).
 
-Preguntas adicionales: jgomez@gomosoft.com
+Preguntas: jgomez@gomosoft.com
 
 Licencia GPLv3
 --------------
