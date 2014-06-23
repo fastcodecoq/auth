@@ -1,9 +1,9 @@
 Gomosoft Auth
 =============
 
-Sistema de logueo prediseñado, basado en autenticación de usuarios por tokens y http cookies (para persistir la sesion lado cliente, en caso de usar el sistema como REST API). En su estructura contiene PHP para backend y MySQL para base de datos. 
+Sistema de logueo prediseñado, basado en autenticación por tokens y http cookies (para persistir la sesion lado cliente, en caso de usar el sistema como REST API). En su estructura contiene PHP para backend y MySQL para base de datos. 
 
-Esta herramienta te ahorrará horas de desarrollo, y lo puedas invertir en los modulos de tu app. 
+Esta herramienta te ahorrará horas de desarrollo, el cual podrás invertir en los modulos de tu app. Además incluye un conjuto de librerías, listas para que las uses de acuerdo a tus necesidades (librerias incluidas se detallan abajo).
 
 
 
@@ -96,7 +96,6 @@ Preguntas adicionales: jgomez@gomosoft.com
 
 Licencia GPLv3
 --------------
-
 
 
 This file is part of Gomosoft Auth.
