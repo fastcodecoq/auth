@@ -136,7 +136,13 @@ $auth = new authCtrl;
 Activar REST API
 ----------------
 
-1. Debes permitir Cross Domains para ello hacemos lo siguiente:
+1. Cambiamos dentro del archivo de configuración /controladores/config.inc, la siguiente linea
+
+```php
+define("REST_API",false);
+```
+
+2. Debes permitir Cross Domains para ello hacemos lo siguiente:
 
 *Apache*
 
@@ -166,11 +172,29 @@ Usando como REST API
 * Validar permisos 
 `GET auth.php?val_perms&token=<token>&uid=<uid>& modulo=<modulo | opcional>&privilegio=<privilegio | opcional>`
 * Validar si un usario esta logueado `GET auth.php?esta_logueado&token=<token>&uid=<uid>`
-* Crear usuario `POST usuarios.php`, con los parametros:
- *nombre
- *email
- *clave
- *permisos
+
+El resto de procesos, como validación de permisos y de autenticacion, se puede hacer desde los demás controladores que añadamos a nuestro API. Ej:
+
+```php
+ require_once('ruta/a/auth.php');
+ $auth = new AuthCtrl;
+
+//esto hará el proceso de validación
+ if(!$auth->esta_logueado())
+   //no esta logueado, realizamos la acción correspondiente
+ else
+   {
+
+     //esta logueado hagamos algo
+
+   }
+```
+
+Notas: 
+
+1. El registro, la creación y logueo de usuarios, debe hacerse en el servidor del API. 
+2. Trata de dar las respuestas en JSON. 
+
 
 **Respuesta.**
 
