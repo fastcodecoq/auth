@@ -145,16 +145,16 @@ Activar REST API
  3. Descomentamos en .htaccess las siguientes líneas:
 
  ```
-#<IfModule mod_headers.c>
+<IfModule mod_headers.c>
 
- #  Header set Access-Control-Allow-Origin "ip_del_cliente"
+  Header set Access-Control-Allow-Origin "ip_del_cliente"
 
-#</IfModule>
+</IfModule>
 
  ```
 
 
-** Nginx **
+**Nginx**
 
  1. Añadimos `add_header Access-Control-Allow-Origin ip_del_cliente;` al archivo de configuración de nuestro sitio Nginx.
  2. Reinicamos el servicio Nginx `sudo service nginx restart`.
@@ -173,7 +173,7 @@ Usando como REST API
  *clave
  *permisos
 
-** Respuesta. **
+**Respuesta.**
 
 El REST API responde en JSON:
 
