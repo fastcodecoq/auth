@@ -7,7 +7,7 @@ class usrsCtrl{
  
      protected $db;
 
-     public function __construct($http){
+     public function __construct($http = false){
      	  $this->db = new mysqli(db_host, db_user, db_pass, db_bd);     
 
         if($http)
