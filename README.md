@@ -144,14 +144,13 @@ Activar REST API
  2. Reiniciamos el servicio Apache `sudo service restart apache2`.
  3. Descomentamos en .htaccess las siguientes líneas:
 
- ```apache
+```apache
 <IfModule mod_headers.c>
 
   Header set Access-Control-Allow-Origin "ip_del_cliente"
 
 </IfModule>
-
- ```
+```
 
 
 *Nginx*
