@@ -7,8 +7,10 @@ class usrsCtrl{
  
      protected $db;
 
-     public function __construct(){
+     public function __construct($http){
      	  $this->db = new mysqli(db_host, db_user, db_pass, db_bd);     
+
+        if($http)
         $this->run();	  
      }
 
@@ -407,4 +409,4 @@ class usrsCtrl{
 
 
 if($_SERVER["REQUEST_METHOD"])
-  new usrsCtrl;
+  new usrsCtrl(true);

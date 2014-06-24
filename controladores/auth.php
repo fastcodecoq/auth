@@ -10,15 +10,16 @@ class authCtrl{
 	var $login_url;
 	var $app_url;
 
-     public function __construct(){     	  
+     public function __construct($http){     	  
      	  $this->db = new mysqli(db_host, db_user, db_pass, db_bd);  // cambiar por tu base de datos
 
      	  $this->login_url = path . "/" . login_url; 
 		    $this->app_url = path . "/" . app_url; 
-
+  
+    if($http)
         try{
         
-          $this->run();  
+          $this->rutas();  //iniciamos las rutas
  
         }catch(authException $e)
         {
@@ -401,7 +402,8 @@ class authCtrl{
      }
 
 
-    protected function run(){
+    protected function rutas(){
+        
         $app = $this;
         $verbo = $_SERVER['REQUEST_METHOD'];
 
@@ -424,7 +426,7 @@ class authCtrl{
        
         if(isset($_GET['logout']))
           $app->logout();   
-        else if(isset($_GET['perms']) AND REST_API)
+        else if(isset($_GET['perms']) AND REST_API) //metodos solo disponibles en REST API
             $app->ok($app->get_permisos());  
         else if(isset($_GET['validar_perms']) AND REST_API)
            if(isset($_GET['privilegio']))
@@ -445,5 +447,5 @@ class authCtrl{
 }
 
 
-if($_SERVER["REQUEST_METHOD"])
-  new AuthCtrl;
+if($_SERVER["REQUEST_METHOD"])  
+  new AuthCtrl(true); //iniciaos el controlador en modo HTTP
