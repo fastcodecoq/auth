@@ -144,7 +144,7 @@ define("REST_API",false);
 
 2. Debes permitir Cross Domains para ello hacemos lo siguiente:
 
-*Apache*
+**Apache.**
 
  1. Activamos el modulo headers `$ a2enmod headers`.
  2. Reiniciamos el servicio Apache `sudo service restart apache2`.
@@ -159,7 +159,7 @@ define("REST_API",false);
 ```
 
 
-*Nginx*
+**Nginx.**
 
  1. Añadimos `add_header Access-Control-Allow-Origin ip_del_cliente;` al archivo de configuración de nuestro sitio Nginx.
  2. Reinicamos el servicio Nginx `sudo service nginx restart`.
