@@ -10,6 +10,17 @@ Allow from all
 Deny from env=bad_bot
 </files>
 
+#Si queremos usar como REST API debemos descomentar las lineas de abajo 
+
+#<IfModule mod_headers.c>
+ 
+ #  Puedes cambiar el "*" por una ip especifica, en caso de que solo desees permitir request desde 
+ #  ... esa ip.
+
+ #  Header set Access-Control-Allow-Origin "*"
+
+#</IfModule>
+
 
 #bloqueamos el acceso http a los archivos .inc
 <Files ~ "\.inc$">

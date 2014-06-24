@@ -386,9 +386,13 @@ function _main(){
 		        echo json_encode($app->get_permisos());  
 		    else if(isset($_GET['test_perms']))
            if(isset($_GET['privilegio']))
-		        var_dump($app->validar_permisos($_GET['modulo']), $_GET['privilegio']);  
+		        echo json_encode(array( 'rs' => $app->validar_permisos($_GET['modulo']), $_GET['privilegio']));  
+           else if(isset($_GET['modulo']))
+            echo json_encode(array( 'rs' => $app->validar_permisos($_GET['modulo'])));
            else
-            $app->validar_permisos($_GET['modulo']);
+            echo json_encode(array('error' => true, 'mensaje' => 'params_invalidos'));
+        else if(isset($_GET['esta_logueado']))
+
 		    
 		break;
 
