@@ -55,7 +55,7 @@ class authCtrl{
           $json['msg'] = $msg;
 
          echo json_encode($json);
-         
+
      }
 
      protected function refrescar_token($token, $usr, $es_infinito = false){
@@ -401,16 +401,17 @@ function _main(){
 		   
         if(isset($_GET['logout']))
 		    	$app->logout();		
-		    else if(isset($_GET['perms']))
-		        echo json_encode($app->get_permisos());  
-		    else if(isset($_GET['validar_perms']))
+		    else if(isset($_GET['perms']) AND REST_API)
+		        $app->ok($app->get_permisos());  
+		    else if(isset($_GET['validar_perms']) AND REST_API)
            if(isset($_GET['privilegio']))
-		        echo json_encode(array( 'rs' => $app->validar_permisos($_GET['modulo']), $_GET['privilegio']));  
+		        $app->ok($app->validar_permisos($_GET['modulo'], $_GET['privilegio']));  
            else if(isset($_GET['modulo']))
-            echo json_encode(array( 'rs' => $app->validar_permisos($_GET['modulo'])));
+            $app->ok($app->validar_permisos($_GET['modulo']));
            else
-            echo json_encode(array('error' => true, 'mensaje' => 'params_invalidos'));
+            $app->no('params_invalidos');
         else if(isset($_GET['esta_logueado']))
+            echo $app->ok($app->esta_logueado());
 
 		    
 		break;
