@@ -271,7 +271,7 @@ class authCtrl{
             if($cred->num_rows > 0)
             {
 
-               //eliminamos la cookie http
+               //eliminamos la credencial
                $this->eliminar_credencial($credencial);
                	
                // redireccionamos a la pagina de login
