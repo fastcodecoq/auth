@@ -16,6 +16,7 @@
          define("path",""); // si el app funcionará en un directorio diferente aqui, colocalo.
          define("login_url","/localhost/auth");  //cambiar por la ruta a su archivo login         
          define("app_url","/localhost/auth/app");  //cambiar por la ruta a su archivo login         
+         define("ttl", 7200);  //tiempo de vida del token en segundos
 
 
 

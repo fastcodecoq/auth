@@ -78,19 +78,19 @@ class authCtrl{
 
            $_token = $this->gen_token($_token); 
 
-           $ttl = (!$es_infinito) ? time() + (3600 * 2) : 'all';  
-           $_ttl = $ttl < 0 ? time() + ((3600 * 24)*30) : 0;
+           $time = (!$es_infinito) ? time() + ttl : 'all';  
+           $_time = $time === 'all' ? time() + ((3600 * 24) * 30) : 0;  // le damos 30 días de vida, en caso de que el usuario halla seleccionado recordar
 
 
 
            //actualizamos la cookie http
            if(!REST_API)
-                $c = setcookie(cookie_name, serialize(array($usr, $token)), $_ttl,'/', dominio, cookie_https, true);        
+                $c = setcookie(cookie_name, serialize(array($usr, $token)), $_time,'/', dominio, cookie_https, true);        
 
                 if(!$c AND !REST_API)
                   throw new authException("Error extendiendo la Cookie");
 
-                $this->db->query("UPDATE credenciales SET ttl='{$ttl}' WHERE usr = '{$usr}' AND token = '{$token}' LIMIT 1") or die($this->db->error);        
+                $this->db->query("UPDATE credenciales SET time ='{$time}' WHERE usr = '{$usr}' AND token = '{$token}' LIMIT 1") or die($this->db->error);        
 
      }
 
@@ -102,7 +102,7 @@ class authCtrl{
         if(!filter_var($ip, FILTER_VALIDATE_IP))
           return true;
 
-            $cred = $this->db->query("SELECT ttl FROM credenciales WHERE usr = '{$usr}' AND token = '{$token}' AND ua = '{$ua}' AND ip = '{$ip}' LIMIT 1") or die($this->db->error);
+            $cred = $this->db->query("SELECT time FROM credenciales WHERE usr = '{$usr}' AND token = '{$token}' AND ua = '{$ua}' AND ip = '{$ip}' LIMIT 1") or die($this->db->error);
             
 
 
@@ -112,11 +112,13 @@ class authCtrl{
               $cred = $cred->fetch_assoc();
              
 
-              if(!is_numeric($cred['ttl']) ) return 'all';
+              if(!is_numeric($cred['time']) ) return 'all';
               
-              $cred['ttl'] = (int) $cred['ttl'];              
+              $cred['time'] = (int) $cred['time']; 
 
-              return ($cred['ttl'] - time()) < 0 ;
+
+
+              return (time() - $cred['time']) > ttl ;
 
             }else
                 return true;
@@ -270,8 +272,10 @@ class authCtrl{
 
             $usr = $credencial[0];
             $token = $credencial[1];
+            $ua = md5($_SERVER['HTTP_USER_AGENT']);
+            $ip = $_SERVER['REMOTE_ADDR'];
 
-          $cred = $this->db->query("SELECT id FROM credenciales WHERE usr = '{$usr}' AND token = '{$token}' LIMIT 1");
+          $cred = $this->db->query("SELECT id FROM credenciales WHERE usr = '{$usr}' AND token = '{$token}' AND ua = '{$ua}' AND ip = '{$ip}' LIMIT 1");
 
             if($cred->num_rows > 0)
             {
@@ -375,20 +379,20 @@ class authCtrl{
                  //sino solo le damos 30 mins de vida
                  $remember = !!(isset($_POST['remember']) && !empty($_POST['remember']));
 
-                 $ttl = $remember ? 'all' : $now + 1800;
+                 $time = $remember ? 'all' : $now + ttl;
 
                 
-                 $this->db->query("INSERT INTO credenciales (usr, token, ttl, cliente, ip, ua) VALUES ('{$_email}', '{$token}', '{$ttl}', '{$cliente}', '{$ip}', '{$ua}')") or die($this->db->error);                
+                 $this->db->query("INSERT INTO credenciales (usr, token, time, cliente, ip, ua) VALUES ('{$_email}', '{$token}', '{$time}', '{$cliente}', '{$ip}', '{$ua}')") or die($this->db->error);                
 
                 //instanciamos una cookie http con los de la credencial
 
                  // si el usuario ha seleccionado recordar le damos un
                  // tiempo de vida a la cookie de 30 días 
                  // sino le damos 2 horas de vida (media jornada laboral)                  
-                  $ttl = $remember ? time() + ((3600 * 24)*30) : 0;
+                  $time = $remember ? time() + ( (3600 * 24)* 30 ) : 0;
 
                   if(!REST_API)
-                  $c = setcookie(cookie_name, serialize(array($_email,$token)), $ttl ,'/', dominio, cookie_https, true);         
+                  $c = setcookie(cookie_name, serialize(array($_email,$token)), $time ,'/', dominio, cookie_https, true);         
 
                   if(!$c AND !REST_API)                   
                   throw new authException("Error creando la Cookie");
