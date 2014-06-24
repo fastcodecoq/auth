@@ -133,6 +133,53 @@ $auth = new authCtrl;
     //no esta logueado
 ```
 
+Activar REST API
+----------------
+
+1. Debes permitir Cross Domains para ello hacemos lo siguiente:
+
+** Apache **
+
+ 1. Activamos el modulo headers `$ a2enmod headers`.
+ 2. Reiniciamos el servicio Apache `sudo service restart apache2`.
+ 3. Descomentamos en .htaccess las siguientes líneas:
+
+ ```
+#<IfModule mod_headers.c>
+
+ #  Header set Access-Control-Allow-Origin "ip_del_cliente"
+
+#</IfModule>
+
+ ```
+
+
+** Nginx **
+
+ 1. Añadimos `add_header Access-Control-Allow-Origin ip_del_cliente;` al archivo de configuración de nuestro sitio Nginx.
+ 2. Reinicamos el servicio Nginx `sudo service nginx restart`.
+
+
+Usando como REST API
+--------------------
+
+* Obtener permisos `GET auth.php?perms&token=<token>&uid=<uid>`
+* Validar permisos 
+`GET auth.php?val_perms&token=<token>&uid=<uid>& modulo=<modulo | opcional>&privilegio=<privilegio | opcional>`
+* Validar si un usario esta logueado `GET auth.php?esta_logueado&token=<token>&uid=<uid>`
+* Crear usuario `POST usuarios.php`, con los parametros:
+ *nombre
+ *email
+ *clave
+ *permisos
+
+** Respuesta. **
+
+El REST API responde en JSON:
+
+`{error : <boolean>, rs : <mixed>, mensaje : <String>}`
+
+
 Descargas
 ---------
 
