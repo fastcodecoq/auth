@@ -219,7 +219,7 @@ Notas:
 
 **Respuesta.**
 
-Cuando esta activo el modo REST API, la respuesta se da en JSON:
+Cuando el modo REST API esta activo, la respuesta se da en JSON:
 
 ```javascript
  
