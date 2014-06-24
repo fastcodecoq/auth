@@ -105,7 +105,7 @@ Como podemos observar cada modulo, tiene un objeto con dos variables r (lectura)
 
 * Para eliminar un usuario se debe hacer una petición `DELETE a /controladores/usuarios.php` pasando como parametro el id del usuario. Ej. /controladores/usuarios.php?id=2
 
-* Para actualizar un usuario se debe hacer una petición PUT a /controladores/usuarios.php pasando como parametros los campos que se actualizarán.
+* Para actualizar un usuario se debe hacer una petición `PUT a /controladores/usuarios.php` pasando como parametros los campos que se actualizarán.
 
 * Para cambiar la clave se hace una petición `PUT a /controladores/usuarios.php?cambiar_clave`, pasando como parametro  clave antigua, nueva clave y confirmación de nueva clave `[clave,nva_clave,_nva_clave]`, ver el archivo /controladores/usuarios.php, para mayor comprensión.
 
@@ -147,13 +147,13 @@ por
 define("REST_API",true); 
 ```
 
-2. Debes permitir Cross Domains para ello hacemos lo siguiente:
+2. Debemos permitir Cross Domain Request, para ello hacemos lo siguiente:
 
 **Apache.**
 
- 1. Activamos el modulo headers `$ a2enmod headers`.
- 2. Reiniciamos el servicio Apache `sudo service restart apache2`.
- 3. Descomentamos en .htaccess las siguientes líneas:
+ 1. Activamos el modulo headers `$ sudo a2enmod headers`.
+ 2. Reiniciamos el servicio Apache `$ sudo service restart apache2`.
+ 3. Descomentamos en `/.htaccess` las siguientes líneas:
 
 ```apache
 <IfModule mod_headers.c>
@@ -166,17 +166,21 @@ define("REST_API",true);
 
 **Nginx.**
 
- 1. Añadimos `add_header Access-Control-Allow-Origin ip_del_cliente;` al archivo de configuración de nuestro sitio Nginx.
+ 1. Añadimos la línea `add_header Access-Control-Allow-Origin ip_del_cliente;`, al archivo de configuración de nuestro sitio Nginx.
  2. Reinicamos el servicio Nginx `sudo service nginx restart`.
 
 
 Usando como REST API
 --------------------
 
-* Obtener permisos `GET auth.php?perms&token=<token>&uid=<uid>`
-* Validar permisos 
+* Obtener permisos 
+`GET auth.php?perms&token=<token>&uid=<uid>`
+
+* Validar permisos
 `GET auth.php?validar_perms&token=<token>&uid=<uid>& modulo=<modulo | opcional>&privilegio=<privilegio | opcional>`
-* Validar si un usario esta logueado `GET auth.php?esta_logueado&token=<token>&uid=<uid>`
+
+* Validar si un usario esta logueado 
+`GET auth.php?esta_logueado&token=<token>&uid=<uid>`
 
 El resto de procesos, como validación de permisos y de autenticacion, se puede hacer desde los demás controladores que agreguemos a nuestro API. Ej:
 
@@ -209,7 +213,7 @@ Notas:
 
 **Respuesta.**
 
-El REST API responde en JSON:
+Cuando esta activo el modo REST API, la respuesta se da en JSON:
 
 ```javascript
  
