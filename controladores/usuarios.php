@@ -8,7 +8,8 @@ class usrsCtrl{
      protected $db;
 
      public function __construct(){
-     	  $this->db = new mysqli(db_host, db_user, db_pass, db_bd);     	  
+     	  $this->db = new mysqli(db_host, db_user, db_pass, db_bd);     
+        $this->run();	  
      }
 
      public function get(){
@@ -334,49 +335,46 @@ class usrsCtrl{
      	  	echo json_encode(array('error' => true, 'message' => 'cliente_no_actualizado'));
      }
 
- }
 
 
+     protected function run(){
 
+        $app = $this;
+       $verbo = $_SERVER['REQUEST_METHOD'];
 
-function main(){
+  switch ($verbo) {
+    case 'GET':
+      
+      if(isset($_GET['find']))
+        echo json_encode($app->find($_GET['email']));
+      else if(isset($_GET['nit']))
+        $app->getNits();
+      else if(isset($_GET['nombre']))
+        $app->getNames();     
+      else
+        echo json_encode($app->get());
 
-	$app = new usrsCtrl;
-	$verbo = $_SERVER['REQUEST_METHOD'];
+      break;
 
-	switch ($verbo) {
-		case 'GET':
-			
-			if(isset($_GET['find']))
-				echo json_encode($app->find($_GET['email']));
-			else if(isset($_GET['nit']))
-				$app->getNits();
-			else if(isset($_GET['nombre']))
-				$app->getNames();			
-			else
-				echo json_encode($app->get());
-
-			break;
-
-		case 'POST':
+    case 'POST':
            
              if(isset($_GET['completar']))
              $app->ini_clave();
              else if(!isset($_GET['activar_pass']))
-		         $app->post();
+             $app->post();
 
-		break;
-
-		case 'DELETE':
-		
-       $app->delete();
-		
     break;
 
-		case 'PUT':
+    case 'DELETE':
+    
+       $app->delete();
+    
+    break;
+
+    case 'PUT':
     
     if(isset($_GET['cambiar_clave']))
-		   {
+       {
         parse_str(file_get_contents("php://input"), $_PUT);
         
         $erros = array();
@@ -399,12 +397,14 @@ function main(){
     else
        $app->put();
 
-		break;
-		
+    break;
+    
 
-	}
+     }
 
-}
+ }
 
 
- main();
+
+if($_SERVER["REQUEST_METHOD"])
+  new usrsCtrl;
