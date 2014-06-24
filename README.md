@@ -173,9 +173,11 @@ Usando como REST API
 `GET auth.php?val_perms&token=<token>&uid=<uid>& modulo=<modulo | opcional>&privilegio=<privilegio | opcional>`
 * Validar si un usario esta logueado `GET auth.php?esta_logueado&token=<token>&uid=<uid>`
 
-El resto de procesos, como validación de permisos y de autenticacion, se puede hacer desde los demás controladores que añadamos a nuestro API. Ej:
+El resto de procesos, como validación de permisos y de autenticacion, se puede hacer desde los demás controladores que agreguemos a nuestro API. Ej:
 
 ```php
+ //este es un controlador personalizado de mi API REST
+ 
  require_once('ruta/a/auth.php');
  $auth = new AuthCtrl;
 
