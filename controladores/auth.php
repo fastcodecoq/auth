@@ -16,6 +16,18 @@ class authCtrl{
      	  $this->login_url = path . "/" . login_url; 
 		    $this->app_url = path . "/" . app_url; 
 
+        try{
+        
+          $this->run();  
+ 
+        }catch(authException $e)
+        {
+
+        echo $e->getMessage(); 
+        die;
+        // imprimimos el error solo para modo desarrollo
+        }
+
      }
 
 
@@ -376,37 +388,35 @@ class authCtrl{
 
      }
 
-}
 
-function _main(){
+    protected function run(){
+        $app = $this;
+        $verbo = $_SERVER['REQUEST_METHOD'];
 
-	$app = new authCtrl;
-	$verbo = $_SERVER['REQUEST_METHOD'];
+     switch ($verbo) {
+  
 
-	switch ($verbo) {
-	
-
-		case 'POST':
-		  
+    case 'POST':
+      
       if(isset($_GET['auth']))
-		        $app->auth();
-		  else if(isset($_GET['activar_pass']))
-		    	 {
-		    	 	header('Content-type: text/html; charset=utf-8');
-		    	 	echo $app->activar_pass();
-		    	 }
+            $app->auth();
+      else if(isset($_GET['activar_pass']))
+           {
+            header('Content-type: text/html; charset=utf-8');
+            echo $app->activar_pass();
+           }
 
-		break;
+    break;
 
-		case 'GET':
-		   
+    case 'GET':
+       
         if(isset($_GET['logout']))
-		    	$app->logout();		
-		    else if(isset($_GET['perms']) AND REST_API)
-		        $app->ok($app->get_permisos());  
-		    else if(isset($_GET['validar_perms']) AND REST_API)
+          $app->logout();   
+        else if(isset($_GET['perms']) AND REST_API)
+            $app->ok($app->get_permisos());  
+        else if(isset($_GET['validar_perms']) AND REST_API)
            if(isset($_GET['privilegio']))
-		        $app->ok($app->validar_permisos($_GET['modulo'], $_GET['privilegio']));  
+            $app->ok($app->validar_permisos($_GET['modulo'], $_GET['privilegio']));  
            else if(isset($_GET['modulo']))
             $app->ok($app->validar_permisos($_GET['modulo']));
            else
@@ -414,18 +424,14 @@ function _main(){
         else if(isset($_GET['esta_logueado']))
             echo $app->ok($app->esta_logueado());
 
-		    
-		break;
+        
+    break;
 
-	}
+       }
+     }
 
 }
 
-try{
 
- _main();  
-}catch(authException $e){
-  echo $e->getMessage(); 
-  die;
-	// imprimimos el error solo para modo desarrollo
-}
+if($_SERVER["REQUEST_METHOD"])
+  new AuthCtrl;
