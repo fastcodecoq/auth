@@ -136,10 +136,15 @@ $auth = new authCtrl;
 Activar REST API
 ----------------
 
-1. Cambiamos dentro del archivo de configuración /controladores/config.inc, la siguiente linea
+1. Cambiamos dentro del archivo de configuración /controladores/config.inc, la siguiente linea:
 
 ```php
-define("REST_API",false);
+define("REST_API",false); 
+```
+por
+
+```php
+define("REST_API",true); 
 ```
 
 2. Debes permitir Cross Domains para ello hacemos lo siguiente:
@@ -206,7 +211,15 @@ Notas:
 
 El REST API responde en JSON:
 
-`{error : <boolean>, rs : <mixed>, mensaje : <String>}`
+```javascript
+ 
+ { 
+   error : <boolean>
+   ,rs : <mixed>
+   , mensaje : <String>
+ }
+
+```
 
 
 Descargas
