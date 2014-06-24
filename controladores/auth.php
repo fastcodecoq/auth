@@ -230,8 +230,28 @@ class authCtrl{
 
     }
 
+    protected function eliminar_credencial($credencial){
 
-    public function esta_logueado(){ return !!$this->validar_token(); }    
+               if(!REST_API)
+               setcookie(cookie_name, '', time() - 1800 ,'/', dominio, cookie_https, true);        
+
+               $usr = $credencial[0];
+               $token = $credencial[1];
+               $ua = md5($_SERVER['HTTP_USER_AGENT']);
+               $ip = $_SERVER['REMOTE_ADDR'];
+
+               if(!filter_var($ip, FILTER_VALIDATE_IP))
+                return false;
+
+               $this->db->query("DELETE FROM credenciales WHERE usr = '{$usr}' AND token = '{$token}' AND ua = '{$ua}' AND ip = '{$ip}'") or die($this->db->error);
+
+
+              return true;
+
+    }
+
+
+    public function esta_logueado(){ $rs = !!$this->validar_token(); if(!$rs) $this->eliminar_credencial($this->get_credencial()); return $rs; }    
 
      public function logout(){
 
@@ -252,15 +272,7 @@ class authCtrl{
             {
 
                //eliminamos la cookie http
-               if(!REST_API)
-               setcookie(cookie_name, '', time() - 1800 ,'/', dominio, cookie_https, true);				 
-
-
-               $this->db->query("DELETE FROM credenciales WHERE usr = '{$usr}' AND token = '{$token}'") or die($this->db->error);
-
-
-               if($this->db->affected_rows === 0)
-               	throw new authException("Error intentando eliminar el token");
+               $this->eliminar_credencial($credencial);
                	
                // redireccionamos a la pagina de login
               $this->redir_to_login();  //no es un usuario valido               

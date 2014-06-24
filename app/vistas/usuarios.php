@@ -5,6 +5,7 @@ include('../controladores/auth.php');
 
 $auth = new authCtrl;
 
+
  if(!$auth->esta_logueado())
   $auth->redir_to_login();  // si no esta logueado lo mandamos a la pagina de login 
 
