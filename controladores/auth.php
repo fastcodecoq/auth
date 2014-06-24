@@ -11,7 +11,7 @@ class authCtrl{
   var $app_url;
 
      public function __construct($http = false){        
-        $this->db = new mysqli(db_host, db_user, db_pass, db_bd);  // cambiar por tu base de datos
+        $this->db = new mysqli(db_host, db_user, db_pass, db_bd);  
 
         $this->login_url = path . "/" . login_url; 
         $this->app_url = path . "/" . app_url; 
