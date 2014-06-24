@@ -174,13 +174,19 @@ Usando como REST API
 --------------------
 
 * Obtener permisos 
-```GET auth.php?perms&token=<token>&uid=<uid>```
+```
+GET auth.php?perms&token=<token>&uid=<uid>
+```
 
 * Validar permisos
-```GET auth.php?validar_perms&token=<token>&uid=<uid>& modulo=<modulo | opcional>&privilegio=<privilegio | opcional>```
+```
+GET auth.php?validar_perms&token=<token>&uid=<uid>& modulo=<modulo | opcional>&privilegio=<privilegio | opcional>
+```
 
 * Validar si un usario esta logueado 
-```GET auth.php?esta_logueado&token=<token>&uid=<uid>```
+```
+GET auth.php?esta_logueado&token=<token>&uid=<uid>
+```
 
 El resto de procesos, como validación de permisos y de autenticacion, se puede hacer desde los demás controladores que agreguemos a nuestro API. Ej:
 
