@@ -11,7 +11,7 @@ class usrsCtrl{
      	  $this->db = new mysqli(db_host, db_user, db_pass, db_bd);     
 
         if($http)
-        $this->run();	  
+        $this->rutas();	  
      }
 
      public function get(){
@@ -339,7 +339,7 @@ class usrsCtrl{
 
 
 
-     protected function run(){
+     protected function rutas(){
 
         $app = $this;
        $verbo = $_SERVER['REQUEST_METHOD'];
