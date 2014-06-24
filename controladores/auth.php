@@ -118,7 +118,7 @@ class authCtrl{
 
 
 
-              return !!((time() - $cred['time']) > ttl) ;
+              return !!((time() - $cred['time']) > ttl);
 
             }else
                 return true;
