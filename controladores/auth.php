@@ -59,7 +59,7 @@ class authCtrl{
 
      public function ok($rs, $msg = false){
          
-         $json = array('rs' => $rs);
+         $json = array('error' => false, 'data' => $rs);
 
          if($msg)
           $json['msg'] = $msg;

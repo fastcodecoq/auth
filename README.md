@@ -225,7 +225,7 @@ Cuando el modo REST API esta activo, la respuesta se da en JSON:
  
  { 
    error : <boolean>
-   ,rs : <mixed>
+   ,data : <mixed>  //datos solicitados
    , mensaje : <String>
  }
 
