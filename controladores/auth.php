@@ -41,7 +41,7 @@ class authCtrl{
 
      public function no($msg = false){
           
-           $msg = $msg ? $msg , 'no_autorizado';
+           $msg = $msg ? $msg : 'no_autorizado';
 
            echo json_encode(array('error' => true, 'mensaje' => $msg));
 
