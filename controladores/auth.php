@@ -144,15 +144,9 @@ class authCtrl{
                   $this->refrescar_token($token, $usr);
                   return true;
                 }
-            else if($validacion)
-              if(REST_API)
+            else if($validacion)            
                 return false;                
-              else
-              {
-                $this->refrescar_token($token, $usr);
-                return true;
-              }
-
+           
      }
 
 
