@@ -355,8 +355,7 @@ class authCtrl{
               
                $usr = $usr->fetch_assoc();
 
-               //hacemos el hash del password. Este mismo hash se usa al momento del registro
-
+               //validamos las claves. 
                if($this->val_pass($clave, $usr['clave']))
                {   
                     // el usuario es valido
