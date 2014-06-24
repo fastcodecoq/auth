@@ -100,7 +100,7 @@ class authCtrl{
         $ip = $_SERVER["REMOTE_ADDR"];
 
         if(!filter_var($ip, FILTER_VALIDATE_IP))
-          return true;
+          return false;
 
             $cred = $this->db->query("SELECT time FROM credenciales WHERE usr = '{$usr}' AND token = '{$token}' AND ua = '{$ua}' AND ip = '{$ip}' LIMIT 1") or die($this->db->error);
             
