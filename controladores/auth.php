@@ -9,14 +9,12 @@ class authCtrl{
 	protected $db;
 	var $login_url;
 	var $app_url;
-  var $REST_API;
 
      public function __construct(){     	  
      	  $this->db = new mysqli(db_host, db_user, db_pass, db_bd);  // cambiar por tu base de datos
 
      	  $this->login_url = path . "/" . login_url; 
 		    $this->app_url = path . "/" . app_url; 
-        $this->REST_API = REST_API;   	  
 
      }
 
@@ -70,9 +68,10 @@ class authCtrl{
 				   $ttl = (!$es_infinito) ? time() + (3600 * 2) : -7200;  
 
 				   //actualizamos la cookie http
+           if(!REST_API)
                 $c = setcookie(cookie_name, serialize(array($usr, $token)), $ttl,'/', dominio, cookie_https, true);				 
 
-                if(!$c)
+                if(!$c AND !REST_API)
                 	throw new authException("Error extendiendo la Cookie");
 
                 $this->db->query("UPDATE credenciales SET ttl='{$ttl}' WHERE usr = '{$usr}' AND token = '{$token}' LIMIT 1") or die($this->db->error);     		
@@ -209,13 +208,13 @@ class authCtrl{
 
     public function get_credencial(){
 
-    	if(!isset($_COOKIE[cookie_name]) && !$this->REST_API)
+    	if(!isset($_COOKIE[cookie_name]) && !REST_API)
     		return false;    	
 
-      if(!$this->REST_API)
+      if(!REST_API)
     	return unserialize($_COOKIE[cookie_name]);
       else
-      return array(md5($_GET['user']), $_GET['token']);
+      return array($_GET['uid'], $_GET['token']);
 
     }
 
@@ -241,6 +240,7 @@ class authCtrl{
             {
 
                //eliminamos la cookie http
+               if(!REST_API)
                setcookie(cookie_name, '', time() - 1800 ,'/', dominio, cookie_https, true);				 
 
 
@@ -358,9 +358,10 @@ class authCtrl{
                  // sino le damos 2 horas de vida (media jornada laboral)
                   $ttl = $remember ? time() + ((3600 * 24)*30) : time() + ( 3600 * 2 ); 
 
+                  if(!REST_API)
                   $c = setcookie(cookie_name, serialize(array($_email,$token)), $ttl ,'/', dominio, cookie_https, true);				 
 
-                  if(!$c)                  	
+                  if(!$c AND !REST_API)                  	
                 	throw new authException("Error creando la Cookie");
 
                  //hemos hecho todas las validaciones ahora redirigmos al app                 
