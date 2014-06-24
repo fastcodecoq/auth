@@ -16,7 +16,7 @@ class usrsCtrl{
 
      public function get(){
 
-          require_once('./auth.php');
+          require_once(dirname(__FILE__) . '/auth.php');
 
            $auth = new authCtrl;
 
@@ -52,7 +52,7 @@ class usrsCtrl{
 
      public function find($email){
 
-          require_once('./auth.php');
+          require_once(dirname(__FILE__) . '/auth.php');
 
            $auth = new authCtrl;
 
@@ -101,7 +101,7 @@ class usrsCtrl{
 
            header('Content-type: application/json; charset=utf-8');          
 
-           require_once('./auth.php');
+           require_once(dirname(__FILE__) . '/auth.php');
 
            $auth = new authCtrl;
 
@@ -172,7 +172,7 @@ class usrsCtrl{
           
            header('Content-type: application/json; charset=utf-8');
 
-           require_once('./auth.php');
+           require_once(dirname(__FILE__) . '/auth.php');
 
            $auth = new authCtrl;
 
@@ -201,7 +201,7 @@ class usrsCtrl{
             if($nva_clave != $_nva_clave)
                return -2;  //las claves no coinciden
 
-            require_once('./auth.php');
+            require_once(dirname(__FILE__) . '/auth.php');
             $auth = new authCtrl;
 
             if(!$usr = $auth->get_credencial()) return false;
@@ -246,7 +246,7 @@ class usrsCtrl{
      
 
           if(!$activacion){
-           require_once('./auth.php');
+           require_once(dirname(__FILE__) . '/auth.php');
 
            $auth = new authCtrl;
 
@@ -295,7 +295,7 @@ class usrsCtrl{
 
      public function put(){
 
-           require_once('./auth.php');
+           require_once(dirname(__FILE__) . '/auth.php');
 
            $auth = new authCtrl;
 
