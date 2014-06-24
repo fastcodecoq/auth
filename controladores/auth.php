@@ -145,7 +145,13 @@ class authCtrl{
                   return true;
                 }
             else if($validacion)
+              if(REST_API)
                 return false;                
+              else
+              {
+                $this->refrescar_token($token, $usr);
+                return true;
+              }
 
      }
 
