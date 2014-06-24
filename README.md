@@ -138,7 +138,7 @@ Activar REST API
 
 1. Debes permitir Cross Domains para ello hacemos lo siguiente:
 
-** Apache **
+*Apache*
 
  1. Activamos el modulo headers `$ a2enmod headers`.
  2. Reiniciamos el servicio Apache `sudo service restart apache2`.
@@ -154,7 +154,7 @@ Activar REST API
  ```
 
 
-**Nginx**
+*Nginx*
 
  1. Añadimos `add_header Access-Control-Allow-Origin ip_del_cliente;` al archivo de configuración de nuestro sitio Nginx.
  2. Reinicamos el servicio Nginx `sudo service nginx restart`.
