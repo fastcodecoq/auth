@@ -39,6 +39,25 @@ class authCtrl{
      	  $this->redir($this->app_url . $params);    
      }
 
+     public function no($msg = false){
+          
+           $msg = $msg ? $msg , 'no_autorizado';
+
+           echo json_encode(array('error' => true, 'mensaje' => $msg));
+
+     }
+
+     public function ok($rs, $msg = false){
+         
+         $json = array('rs' => $rs);
+
+         if($msg)
+          $json['msg'] = $msg;
+
+         echo json_encode($json);
+         
+     }
+
      protected function refrescar_token($token, $usr, $es_infinito = false){
 
      			$now = time();

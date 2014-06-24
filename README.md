@@ -183,11 +183,15 @@ El resto de procesos, como validación de permisos y de autenticacion, se puede 
 
 //esto hará el proceso de validación
  if(!$auth->esta_logueado())
-   //no esta logueado, realizamos la acción correspondiente
+   $auth->no(); //realiza la operacion correspondiente para requests no autorizados
  else
    {
 
      //esta logueado hagamos algo
+
+     //VOID authCtrl:ok($rs <mixed>[, $msg <mixed>]) imprime una respuesta JSON valida.    
+
+     $auth->ok('esta logueado'); 
 
    }
 ```
