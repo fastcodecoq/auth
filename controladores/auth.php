@@ -384,7 +384,7 @@ function _main(){
 		    	$app->logout();		
 		    else if(isset($_GET['perms']))
 		        echo json_encode($app->get_permisos());  
-		    else if(isset($_GET['test_perms']))
+		    else if(isset($_GET['validar_perms']))
            if(isset($_GET['privilegio']))
 		        echo json_encode(array( 'rs' => $app->validar_permisos($_GET['modulo']), $_GET['privilegio']));  
            else if(isset($_GET['modulo']))
