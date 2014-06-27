@@ -3,6 +3,7 @@
          define("db_user","gomosoft"); //usuario de la base de datos
          define("db_bd","auth"); //el nombre de la base de datos del app, por defecto es auth
          define("db_pass","****"); //la clave de la base de datos
+         define("tb_prefijo",""); //prejijo de las tablas, en caso de que uses uno.
          define("db_host","localhost");  
          define("so","linux");
          define("idioma","español");

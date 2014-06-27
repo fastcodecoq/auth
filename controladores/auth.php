@@ -90,7 +90,7 @@ class authCtrl{
                 if(!$c AND !REST_API)
                   throw new authException("Error extendiendo la Cookie");
 
-                $this->db->query("UPDATE credenciales SET time ='{$time}' WHERE usr = '{$usr}' AND token = '{$token}' LIMIT 1") or die($this->db->error);        
+                $this->db->query("UPDATE " . tb_prefijo ."credenciales SET time ='{$time}' WHERE usr = '{$usr}' AND token = '{$token}' LIMIT 1") or die($this->db->error);        
 
      }
 
@@ -102,7 +102,7 @@ class authCtrl{
         if(!filter_var($ip, FILTER_VALIDATE_IP))
           return false;
 
-            $cred = $this->db->query("SELECT time FROM credenciales WHERE usr = '{$usr}' AND token = '{$token}' AND ua = '{$ua}' AND ip = '{$ip}' LIMIT 1") or die($this->db->error);
+            $cred = $this->db->query("SELECT time FROM " . tb_prefijo ."credenciales WHERE usr = '{$usr}' AND token = '{$token}' AND ua = '{$ua}' AND ip = '{$ip}' LIMIT 1") or die($this->db->error);
             
 
 
@@ -172,7 +172,7 @@ class authCtrl{
 
          $_email = $credencial[0];
 
-           $usr = $this->db->query("SELECT permisos  FROM usuarios WHERE _email = '{$_email}' LIMIT 1") or die($this->db->error);
+           $usr = $this->db->query("SELECT permisos  FROM " . tb_prefijo ."usuarios WHERE _email = '{$_email}' LIMIT 1") or die($this->db->error);
 
            if($usr->num_rows > 0){
 
@@ -250,7 +250,7 @@ class authCtrl{
                if(!filter_var($ip, FILTER_VALIDATE_IP))
                 return false;
 
-               $this->db->query("DELETE FROM credenciales WHERE usr = '{$usr}' AND token = '{$token}' AND ua = '{$ua}' AND ip = '{$ip}'") or die($this->db->error);
+               $this->db->query("DELETE FROM " . tb_prefijo ."credenciales WHERE usr = '{$usr}' AND token = '{$token}' AND ua = '{$ua}' AND ip = '{$ip}'") or die($this->db->error);
 
 
               return true;
@@ -275,7 +275,7 @@ class authCtrl{
             $ua = md5($_SERVER['HTTP_USER_AGENT']);
             $ip = $_SERVER['REMOTE_ADDR'];
 
-          $cred = $this->db->query("SELECT id FROM credenciales WHERE usr = '{$usr}' AND token = '{$token}' AND ua = '{$ua}' AND ip = '{$ip}' LIMIT 1");
+          $cred = $this->db->query("SELECT id FROM " . tb_prefijo ."credenciales WHERE usr = '{$usr}' AND token = '{$token}' AND ua = '{$ua}' AND ip = '{$ip}' LIMIT 1");
 
             if($cred->num_rows > 0)
             {
@@ -341,7 +341,7 @@ class authCtrl{
 
            // _email es un campo en la tabla usuarios que corresponde al mail en md5
            // es un metodo para evitarnos ataques en el login a la base de datos
-           $usr = $this->db->query("SELECT clave, nombre  FROM usuarios WHERE _email = '{$_email}' AND clave_pendiente = -1 LIMIT 1") or die($this->db->error);
+           $usr = $this->db->query("SELECT clave, nombre  FROM " . tb_prefijo ."usuarios WHERE _email = '{$_email}' AND clave_pendiente = -1 LIMIT 1") or die($this->db->error);
 
 
            //si el query arroja mas de una fila, procederemos a validar si las claves coinciden
@@ -371,7 +371,7 @@ class authCtrl{
 
                  $token = $this->gen_token($token);               
 
-                 $this->db->query("UPDATE usuarios SET ultimo_ingreso = {$now} WHERE _email = '{$_email}'");                 
+                 $this->db->query("UPDATE " . tb_prefijo ."usuarios SET ultimo_ingreso = {$now} WHERE _email = '{$_email}'");                 
 
                  //si el usuario seleccionó recordar
                  //colocamos el token con tiempo de vida infinito
@@ -381,7 +381,7 @@ class authCtrl{
                  $time = $remember ? 'all' : $now + ttl;
 
                 
-                 $this->db->query("INSERT INTO credenciales (usr, token, time, cliente, ip, ua) VALUES ('{$_email}', '{$token}', '{$time}', '{$cliente}', '{$ip}', '{$ua}')") or die($this->db->error);                
+                 $this->db->query("INSERT INTO " . tb_prefijo ."credenciales (usr, token, time, cliente, ip, ua) VALUES ('{$_email}', '{$token}', '{$time}', '{$cliente}', '{$ip}', '{$ua}')") or die($this->db->error);                
 
                 //instanciamos una cookie http con los de la credencial
 

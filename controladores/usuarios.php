@@ -26,7 +26,7 @@ class usrsCtrl{
                die;
               }
 
-      $cltes = $this->db->query("SELECT id, nombre, email, fecha_creacion, ultimo_ingreso, clave_pendiente FROM usuarios") or die ($this->db->error);
+      $cltes = $this->db->query("SELECT id, nombre, email, fecha_creacion, ultimo_ingreso, clave_pendiente FROM " . tb_prefijo ."usuarios") or die ($this->db->error);
         $rs = array();
 
 
@@ -75,7 +75,7 @@ class usrsCtrl{
 
             $where = implode(',', $where);
 
-        $usr = $this->db->query("SELECT * FROM usuarios WHERE {$where} LIMIT 1") or die($this->db->error);
+        $usr = $this->db->query("SELECT * FROM " . tb_prefijo ."usuarios WHERE {$where} LIMIT 1") or die($this->db->error);
         $rs = array();
 
 
@@ -144,7 +144,7 @@ class usrsCtrl{
 
 
 
-        $_usr = $this->db->query("SELECT id FROM usuarios WHERE email = {$_POST['email']}");
+        $_usr = $this->db->query("SELECT id FROM " . tb_prefijo ."usuarios WHERE email = {$_POST['email']}");
 
         if($_usr->num_rows > 0)
         {        
@@ -153,9 +153,9 @@ class usrsCtrl{
         }
 
             if(!isset($_POST['clave']))
-            $query = "INSERT INTO usuarios (nombre, email, _email, permisos, fecha_creacion) VALUES ({$vals})";
+            $query = "INSERT INTO " . tb_prefijo ."usuarios (nombre, email, _email, permisos, fecha_creacion) VALUES ({$vals})";
             else
-        $query = "INSERT INTO usuarios (nombre, clave, email, _email, permisos, clave_pendiente, fecha_creacion) VALUES ({$vals})";
+            $query = "INSERT INTO " . tb_prefijo ."usuarios (nombre, clave, email, _email, permisos, clave_pendiente, fecha_creacion) VALUES ({$vals})";
 
         $this->db->query($query) or die($this->db->error);
 
@@ -184,7 +184,7 @@ class usrsCtrl{
 
       $id = (int) $_GET['id'];
 
-      $query = "DELETE FROM usuarios WHERE id = {$id} LIMIT 1";
+      $query = "DELETE FROM " . tb_prefijo ."usuarios WHERE id = {$id} LIMIT 1";
 
       $this->db->query($query) or die($this->db->error);
 
@@ -208,7 +208,7 @@ class usrsCtrl{
 
             $usr = $usr[0];
             
-            $query = "SELECT clave FROM usuarios WHERE _email = '{$usr}' LIMIT 1";
+            $query = "SELECT clave FROM " . tb_prefijo ."usuarios WHERE _email = '{$usr}' LIMIT 1";
             $_usr = $this->db->query($query);
 
             if($_usr->num_rows > 0){
@@ -220,7 +220,7 @@ class usrsCtrl{
             {
 
             $nva_clave = $this->hash_($nva_clave); //hasheamos la nueva clave            
-            $query = "UPDATE usuarios SET clave = '{$nva_clave}' WHERE _email = '{$usr}' LIMIT 1";
+            $query = "UPDATE " . tb_prefijo ."usuarios SET clave = '{$nva_clave}' WHERE _email = '{$usr}' LIMIT 1";
 
             $this->db->query($query) or die($this->db->error);
 
@@ -258,7 +258,7 @@ class usrsCtrl{
           return false;
         
 
-          $usr = $this->db->query("SELECT clave_pendiente FROM usuarios WHERE (_email = '{$_email}' AND clave_pendiente = 1) LIMIT 1") or die($this->db->error);
+          $usr = $this->db->query("SELECT clave_pendiente FROM " . tb_prefijo ."usuarios WHERE (_email = '{$_email}' AND clave_pendiente = 1) LIMIT 1") or die($this->db->error);
 
 
           if($usr->num_rows > 0)
@@ -270,7 +270,7 @@ class usrsCtrl{
 
                     $clave = $this->hash_($clave);
 
-                    $query = "UPDATE usuarios SET clave = '{$clave}', clave_pendiente = -1 WHERE (_email = '{$_email}' AND clave_pendiente = 1) LIMIT 1 ";
+                    $query = "UPDATE " . tb_prefijo ."usuarios SET clave = '{$clave}', clave_pendiente = -1 WHERE (_email = '{$_email}' AND clave_pendiente = 1) LIMIT 1 ";
 
                     $this->db->query($query) or die($this->db->error);
 
@@ -327,7 +327,7 @@ class usrsCtrl{
       $set = implode(',' , $set);
       $id = $_PUT['id'];
 
-      $query = "UPDATE clientes SET {$set} WHERE id = {$id} LIMIT 1";
+      $query = "UPDATE " . tb_prefijo ."usuarios SET {$set} WHERE id = {$id} LIMIT 1";
 
       $this->db->query($query) or die($this->db->error);
 
