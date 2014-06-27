@@ -8,10 +8,10 @@ class usrsCtrl{
      protected $db;
 
      public function __construct($http = false){
-     	  $this->db = new mysqli(db_host, db_user, db_pass, db_bd);     
+        $this->db = new mysqli(db_host, db_user, db_pass, db_bd);     
 
         if($http)
-        $this->rutas();	  
+        $this->rutas();   
      }
 
      public function get(){
@@ -26,24 +26,24 @@ class usrsCtrl{
                die;
               }
 
-     	$cltes = $this->db->query("SELECT id, nombre, email, fecha_creacion, ultimo_ingreso, clave_pendiente FROM usuarios") or die ($this->db->error);
-     	  $rs = array();
+      $cltes = $this->db->query("SELECT id, nombre, email, fecha_creacion, ultimo_ingreso, clave_pendiente FROM usuarios") or die ($this->db->error);
+        $rs = array();
 
 
-     	  while($row = $cltes->fetch_assoc())
-     	  	  {
-     	  		foreach ($row as $key => $val)
-     	  	      $row[$key] = utf8_encode( html_entity_decode($val, null, "ISO-8859-1"));
+        while($row = $cltes->fetch_assoc())
+            {
+            foreach ($row as $key => $val)
+                $row[$key] = utf8_encode( html_entity_decode($val, null, "ISO-8859-1"));
 
                     if($row['ultimo_ingreso'] > 0)
                      $row['ultimo_ingreso'] = str_replace(' ', ' a las ',date('Y-m-d H:i:s', $row['ultimo_ingreso']));
-     	  	     	  	
-     	  	  	 $rs[] = $row;
+                    
+               $rs[] = $row;
 
-     	  	  	}
+              }
 
 
-     	 return $rs;
+       return $rs;
 
      }
 
@@ -63,11 +63,11 @@ class usrsCtrl{
               }
 
 
-     	  foreach ($_GET as $key => $val)
-     	  	$_GET[$key] = "'" . addslashes(utf8_decode($val)) . "'";
+        foreach ($_GET as $key => $val)
+          $_GET[$key] = "'" . addslashes(utf8_decode($val)) . "'";
 
             $where = array();
-    	  
+        
 
             if(isset($_GET['email']))
                $where[] = "email = {$_GET['email']}"; 
@@ -75,22 +75,22 @@ class usrsCtrl{
 
             $where = implode(',', $where);
 
-     	  $usr = $this->db->query("SELECT * FROM usuarios WHERE {$where} LIMIT 1") or die($this->db->error);
-     	  $rs = array();
+        $usr = $this->db->query("SELECT * FROM usuarios WHERE {$where} LIMIT 1") or die($this->db->error);
+        $rs = array();
 
 
-     	  while($row = $usr->fetch_assoc())     	  	
-     	  	  {
-     	  		foreach ($row as $key => $val)
-     	  	      $row[$key] = utf8_encode($val);
-     	  	     	  	
-     	  	  	 $rs[] = $row;
+        while($row = $usr->fetch_assoc())           
+            {
+            foreach ($row as $key => $val)
+                $row[$key] = utf8_encode($val);
+                    
+               $rs[] = $row;
 
-     	  	  }
+            }
 
 
 
-     	return $rs;
+      return $rs;
 
      }
 
@@ -111,24 +111,24 @@ class usrsCtrl{
                die;
               }
 
-     	 $email = $_POST['email'];
+       $email = $_POST['email'];
 
            if(isset($_POST['clave']))
            $clave = $_POST['clave'];
 
-     	  foreach ($_POST as $key => $val)
-     	  	$_POST[$key] = "'" . addslashes(htmlentities($val, null, 'UTF-8')) . "'";
+        foreach ($_POST as $key => $val)
+          $_POST[$key] = "'" . addslashes(htmlentities($val, null, 'UTF-8')) . "'";
 
 
             $vals = array();
 
 
             if(!isset($_POST['clave']) OR empty($_POST['clave']))
-     	  {
+        {
             $vals['nombre'] = $_POST['nombre'];
             $vals['email'] = $_POST['email'];
-     	      $vals['_email'] = "'" . md5($email) . "'";
-     	      $vals['permisos'] = $_POST['permisos'];
+            $vals['_email'] = "'" . md5($email) . "'";
+            $vals['permisos'] = $_POST['permisos'];
             }else{
             $vals['nombre'] = $_POST['nombre'];
             $vals['clave'] = "'" . $this->hash_($clave) . "'";
@@ -137,32 +137,32 @@ class usrsCtrl{
             $vals['permisos'] = $_POST['permisos'];
             $vals['clave_pendiente'] = -1;
             }
-     	  
+        
             $vals["fecha_creacion"] = "'" . date("Y-m-d") . "'";
 
-     	  $vals = implode(',', $vals);
+        $vals = implode(',', $vals);
 
 
 
-     	  $_usr = $this->db->query("SELECT id FROM usuarios WHERE email = {$_POST['email']}");
+        $_usr = $this->db->query("SELECT id FROM usuarios WHERE email = {$_POST['email']}");
 
-     	  if($_usr->num_rows > 0)
-     	  {        
-     	  	echo json_encode(array('error' => true, 'message' => 'usuario_duplicado'));
-     	  	die;
-     	  }
+        if($_usr->num_rows > 0)
+        {        
+          echo json_encode(array('error' => true, 'message' => 'usuario_duplicado'));
+          die;
+        }
 
             if(!isset($_POST['clave']))
             $query = "INSERT INTO usuarios (nombre, email, _email, permisos, fecha_creacion) VALUES ({$vals})";
             else
-     	  $query = "INSERT INTO usuarios (nombre, clave, email, _email, permisos, clave_pendiente, fecha_creacion) VALUES ({$vals})";
+        $query = "INSERT INTO usuarios (nombre, clave, email, _email, permisos, clave_pendiente, fecha_creacion) VALUES ({$vals})";
 
-     	  $this->db->query($query) or die($this->db->error);
+        $this->db->query($query) or die($this->db->error);
 
-     	  if($this->db->affected_rows > 0)
-     	  	echo json_encode(array('error' => false, 'message' => 'usuario_creado', 'usuarios' => $this->get()));
-     	  else
-     	  	echo json_encode(array('error' => true, 'message' => 'usuario_no_creado', 'usuarios' => $this->get()));
+        if($this->db->affected_rows > 0)
+          echo json_encode(array('error' => false, 'message' => 'usuario_creado', 'usuarios' => $this->get()));
+        else
+          echo json_encode(array('error' => true, 'message' => 'usuario_no_creado', 'usuarios' => $this->get()));
 
 
      }
@@ -182,16 +182,16 @@ class usrsCtrl{
                die;
               }
 
-     	$id = (int) $_GET['id'];
+      $id = (int) $_GET['id'];
 
-     	$query = "DELETE FROM usuarios WHERE id = {$id} LIMIT 1";
+      $query = "DELETE FROM usuarios WHERE id = {$id} LIMIT 1";
 
-     	$this->db->query($query) or die($this->db->error);
+      $this->db->query($query) or die($this->db->error);
 
-     	if($this->db->affected_rows > 0)
-			echo json_encode(array('error' => false, 'message' => 'usuario_eliminado', 'usuarios' => $this->get()));
-     	  else
-     	  	echo json_encode(array('error' => true, 'message' => 'usuario_no_eliminado', 'usuarios' => $this->get()));
+      if($this->db->affected_rows > 0)
+      echo json_encode(array('error' => false, 'message' => 'usuario_eliminado', 'usuarios' => $this->get()));
+        else
+          echo json_encode(array('error' => true, 'message' => 'usuario_no_eliminado', 'usuarios' => $this->get()));
 
 
      } 
@@ -305,36 +305,36 @@ class usrsCtrl{
                die;
               }
 
-     	parse_str(file_get_contents("php://input"), $_PUT);
+      parse_str(file_get_contents("php://input"), $_PUT);
 
-     	foreach ($_PUT as $key => $val)
-     	  	$_PUT[$key] = "'" . addslashes(htmlentities($val)) . "'";
+      foreach ($_PUT as $key => $val)
+          $_PUT[$key] = "'" . addslashes(htmlentities($val)) . "'";
 
-     	  var_dump($_PUT);
+        var_dump($_PUT);
 
-     	  $vals = array();
-     	  $vals['nombre'] = $_PUT['nombre'];
-     	  $vals['nit'] = $_PUT['nit'];
-     	  $vals['direccion'] = $_PUT['direccion'];
-     	  $vals['ciudad'] = $_PUT['ciudad'];
-     	  $vals['telefono'] = $_PUT['telefono'];
+        $vals = array();
+        $vals['nombre'] = $_PUT['nombre'];
+        $vals['nit'] = $_PUT['nit'];
+        $vals['direccion'] = $_PUT['direccion'];
+        $vals['ciudad'] = $_PUT['ciudad'];
+        $vals['telefono'] = $_PUT['telefono'];
 
-     	  $set = array();
+        $set = array();
 
-     	  foreach ($vals as $key => $val) 
-     	  	 $set[] = "{$key} = {$val}";
+        foreach ($vals as $key => $val) 
+           $set[] = "{$key} = {$val}";
 
-     	$set = implode(',' , $set);
-     	$id = $_PUT['id'];
+      $set = implode(',' , $set);
+      $id = $_PUT['id'];
 
-     	$query = "UPDATE clientes SET {$set} WHERE id = {$id} LIMIT 1";
+      $query = "UPDATE clientes SET {$set} WHERE id = {$id} LIMIT 1";
 
-     	$this->db->query($query) or die($this->db->error);
+      $this->db->query($query) or die($this->db->error);
 
-     	if($this->db->affected_rows > 0)
-			echo json_encode(array('error' => false, 'message' => 'cliente_actualizado'));
-     	  else
-     	  	echo json_encode(array('error' => true, 'message' => 'cliente_no_actualizado'));
+      if($this->db->affected_rows > 0)
+      echo json_encode(array('error' => false, 'message' => 'cliente_actualizado'));
+        else
+          echo json_encode(array('error' => true, 'message' => 'cliente_no_actualizado'));
      }
 
 

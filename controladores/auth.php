@@ -388,7 +388,7 @@ class authCtrl{
                  // si el usuario ha seleccionado recordar le damos un
                  // tiempo de vida a la cookie de 30 días 
                  // sino le damos 2 horas de vida (media jornada laboral)                  
-                  $time = $remember ? time() + ( (3600 * 24)* 30 ) : 0;
+                  $time = $remember ? time() + ( (3600 * 24) * 30 ) : 0;
 
                   if(!REST_API)
                   $c = setcookie(cookie_name, serialize(array($_email,$token)), $time ,'/', dominio, cookie_https, true);         
